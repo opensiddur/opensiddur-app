@@ -5,6 +5,7 @@
   "license": "LGPL3+",
   "private": true,
   "dependencies": {
+    "npm": "^6.9.0",
     "prosemirror-example-setup": "^1.0.1",
     "prosemirror-model": "^1.7.0",
     "prosemirror-schema-basic": "^1.0.0",

@@ -20,8 +20,296 @@
             Open Siddur
         </a>
     </nav>
-    <div id="editor"></div>
-    <div id="content" style="display: none;">Test</div>
+    <div id="editor" dir="rtl"></div>
+    <div id="header" style="display: none;">
+        <tei:teiHeader>
+            <tei:fileDesc>
+                <tei:titleStmt>
+                    <tei:title type="main" xml:lang="he">קדיש</tei:title>
+                </tei:titleStmt>
+                <tei:publicationStmt>
+                    <tei:distributor>
+                        <tei:ref target="http://opensiddur.org">Open Siddur Project</tei:ref>
+                    </tei:distributor>
+                    <tei:availability>
+                        <tei:licence target="http://www.creativecommons.org/licenses/by-sa/4.0"/>
+                    </tei:availability>
+                    <tei:date>2015-04-19</tei:date>
+                </tei:publicationStmt>
+                <tei:sourceDesc>
+                    <tei:bibl>
+                        <tei:title>Kaddish-Wikipedia: The Free Encyclopedia</tei:title>
+                        <tei:ptr type="bibl" target="/data/sources/Kaddish-Wikipedia-%20The%20Free%20Encyclopedia"/>
+                        <tei:ptr type="bibl-content" target="#stream"/>
+                        <tei:biblScope unit="pages" from="1" to="1"/>
+                    </tei:bibl>
+                </tei:sourceDesc>
+            </tei:fileDesc>
+            <tei:revisionDesc>
+                <tei:change type="edited" who="/user/EfraimFeinstein" when="2015-04-19T08:20:34.675Z">The source reference pointed to an invalid source. Corrected.</tei:change>
+                <tei:change type="created" who="/user/EfraimFeinstein" when="2014-08-11T10:58:46.098+04:00">Kaddish text using texts from a Wikipedia article. Be careful! This should be checked against a known PD version and corrected for errors.</tei:change>
+            </tei:revisionDesc>
+        </tei:teiHeader>
+    </div>
+    <div id="links" style="display:none;">
+        <j:links xmlns:j="http://jewishliturgy.org/ns/jlptei/1.0">
+            <tei:link type="condition" target="#range(divra,malchutei) #divra1"/>
+            <tei:link type="condition" target="#range(dhu_atid,viykarei) #divra2"/>
+            <tei:link type="condition" target="#range(vyatzmah,mshichei) #vyatzmah1"/>
+            <tei:link type="condition" target="#range(al_yisrael,oseh_shalom_end) #nohalf"/>
+            <tei:link type="condition" target="#range(titkabel,vshmaya_amen) #titkabel1"/>
+            <tei:link type="condition" target="#range(al_yisrael,vara_amen) #al_yisrael1"/>
+            <tei:link type="condition" target="#range(vyatzmah,mshichei) #vyatzmah1"/>
+            <tei:link type="condition" target="#range(seg52_w2aab3b1d103,seg52_w2aab3b1d103_end) #leila1"/>
+            <tei:link type="condition" target="#range(seg53_w2aab3b1d105,seg53_w2aab3b1d105_end) #leila2"/>
+            <tei:link type="condition" target="#range(vsava,ulkhol_amo) #vsava1"/>
+            <tei:link type="condition" target="#opt_kadisha #kadisha1"/>
+            <tei:link type="condition" target="#range(seg90_w2aab3b1d179,seg90_w2aab3b1d179_end) #vara1"/>
+        </j:links>
+    </div>
+    <div id="conditions" style="display:none">
+        <j:conditions xmlns:j="http://jewishliturgy.org/ns/jlptei/1.0">
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="nohalf">
+                <j:any>
+                    <j:not>
+                        <tei:fs type="Kaddish">
+                            <tei:f name="Half">
+                                <j:yes/>
+                            </tei:f>
+                        </tei:fs>
+                    </j:not>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Full">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Burial">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Rabbinic">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Mourners">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                </j:any>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="divra1">
+                <j:not>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Burial">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                </j:not>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="divra2">
+                <tei:fs type="Kaddish">
+                    <tei:f name="Burial">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <!-- note: this is a nusach difference, we need more conditions... -->
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="vyatzmah1">
+                <j:any>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Vyatzmah">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                </j:any>
+            </j:condition>
+            <!-- TODO: condition for ketz -->
+            <!-- TODO: time condition for 10 days of repentance -->
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="titkabel1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="Full">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+                <!-- and not 9 av! -->
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="al_yisrael1">
+                <j:any>
+                    <tei:fs type="Kaddish">
+                        <tei:f name="Burial">
+                            <j:yes/>
+                        </tei:f>
+                        <tei:f name="Rabbinic">
+                            <j:yes/>
+                        </tei:f>
+                    </tei:fs>
+                </j:any>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="vyatzmah1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="Vyatzmah">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="leila1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="LeilaRepeat">
+                        <j:no/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="leila2">
+                <tei:fs type="Kaddish">
+                    <tei:f name="LeilaRepeat">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="vsava1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="Vsava">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="kadisha1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="AtraKadisha">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+            <j:condition xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0" jf:id="vara1">
+                <tei:fs type="Kaddish">
+                    <tei:f name="Vara">
+                        <j:yes/>
+                    </tei:f>
+                </tei:fs>
+            </j:condition>
+        </j:conditions>
+    </div>
+    <div id="stream" style="display: none;">
+        <jf-merged>
+        <tei-p jf-start="p-1-5-2-1-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="yitgadal" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.3" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">יִתְגַּדַּל וְיִתְקַדַּשׁ שְׁמֵהּ רַבָּא.</jf-textnode>
+            <tei-anchor jf-id="seg4_w2aab3b1b7_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-anchor jf-id="seg5_w2aab3b1b9" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.7" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">בְּעָלְמָא</jf-textnode>
+            <jf-conditional jf-conditional="#divra1" jf-start="conditional-1-5-2-2-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-1"></jf-conditional>
+            <tei-anchor jf-id="divra" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.9" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">דִּיבְרָאכִרְעוּתֵהּ וְיַמְלִיךְ מַלְכוּתֵהּ</jf-textnode>
+            <tei-anchor jf-id="malchutei" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-2-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-1"></jf-conditional>
+            <jf-conditional jf-conditional="#divra2" jf-start="conditional-1-5-2-3-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-2"></jf-conditional>
+            <tei-anchor jf-id="dhu_atid" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.12" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">דְהוּאעָתִיד לְאִתְחַדָּתָא וּלְאַחֲיָאָהמֵתַיָא וּלְאַסָּקָא יָתְהוֹן לְחַיֵּי עָלְמָא וּלְמִבְנֵא קַרְתָּא דִירוּשְׁלֵם וּלְשַׁכְלָלָא הֵיכְלֵה ּבְּגַוַּהּ וּלְמֶעְקַר פֻּלְחָנָא נֻכְרָאָה מְאַרְעָא וּלַאֲתָבָא פֻּלְחָנָא דִשְׁמַיָּא לְאַתְרֵהּ וְיַמְלִיךְ קֻדְשָׁא בְּרִיך ְהוּא בְּמַלְכוּתֵהּ וִיקָרֵהּ</jf-textnode>
+            <tei-anchor jf-id="viykarei" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-3-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-2"></jf-conditional>
+            <jf-conditional jf-conditional="#vyatzmah1" jf-start="conditional-1-5-2-4-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-3"></jf-conditional>
+            <jf-conditional jf-conditional="#vyatzmah1" jf-start="conditional-1-5-2-8-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-7"></jf-conditional>
+            <tei-anchor jf-id="vyatzmah" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.15" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">וְיַצְמַח פֻּרְקָנֵהּ וִיקָרֵב קֵיץ מְשִׁיחֵהּ</jf-textnode>
+            <tei-anchor jf-id="mshichei" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-4-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-3"></jf-conditional>
+            <jf-conditional jf-end="conditional-1-5-2-8-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-7"></jf-conditional>
+            <tei-anchor jf-id="bhayekhon" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.18" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">בְּחַיֵּיכוֹן וּבְיוֹמֵיכוֹן וּבְחַיֵּי דְכָל בֵּית יִשְׂרָאֵל</jf-textnode>
+            <tei-anchor jf-id="seg30_w2aab3b1c59_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-anchor jf-id="seg31_w2aab3b1c61" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.22" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">בַּעֲגָלָא וּבִזְמַן קָרִיב. וְאִמְרוּ אָמֵן</jf-textnode>
+            <tei-anchor jf-id="kariv_amen" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-p jf-start="p-1-5-2-1-4" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="yehi_shmei" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.25" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">יְהֵא שְׁמֵה ּרַבָּא מְבָרַךְ לְעָלַם וּלְעָלְמֵי עָלְמַיָּא</jf-textnode>
+            <tei-anchor jf-id="almaya" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-4" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-p jf-start="p-1-5-2-1-5" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="yitbarakh" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.28" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">יִתְבָּרַךְ וְיִשְׁתַּבַּח וְיִתְפָּאַר וְיִתְרוֹמַם וְיִתְנַשֵּׂא וְיִתְהַדָּר וְיִתְעַלֶּה וְיִתְהַלָּל שְׁמֵהּ דְקֻדְשָׁא בְּרִיךְ הוּא.</jf-textnode>
+            <tei-anchor jf-id="seg51_w2aab3b1d101_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-conditional="#leila1" jf-start="conditional-1-5-2-9-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-8"></jf-conditional>
+            <tei-anchor jf-id="seg52_w2aab3b1d103" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.32" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">לְעֵלָּא מִןכָּל</jf-textnode>
+            <tei-anchor jf-id="seg52_w2aab3b1d103_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-9-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-8"></jf-conditional>
+            <jf-conditional jf-conditional="#leila2" jf-start="conditional-1-5-2-10-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-9"></jf-conditional>
+            <tei-anchor jf-id="seg53_w2aab3b1d105" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.36" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">לְעֵלָּא לְעֵלָּא מִכָּל</jf-textnode>
+            <tei-anchor jf-id="seg53_w2aab3b1d105_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-10-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-9"></jf-conditional>
+        <jf-textnode jf-id="node-5705-1.5.1.38" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">בִּרְכָתָא וְשִׁירָתָא תֻּשְׁבְּחָתָא וְנֶחֱמָתָא דַּאֲמִירָן בְּעָלְמָא. וְאִמְרוּ אָמֵן</jf-textnode>
+            <tei-anchor jf-id="balama_amen" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-5" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <jf-conditional jf-conditional="#titkabel1" jf-start="conditional-1-5-2-6-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-5"></jf-conditional>
+            <tei-p jf-start="p-1-5-2-1-6" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="titkabel" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.41" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">תִּתְקַבַּל צְלוֹתְהוֹן וּבָעוּתְהוֹן דְכָל בֵּית יִשְׂרָאֵל קֳדָם אֲבוּהוֹן דִּיבִשְׁמַיָּא וְאִמְרוּ אָמֵן</jf-textnode>
+            <tei-anchor jf-id="vshmaya_amen" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-6" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <jf-conditional jf-end="conditional-1-5-2-6-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-5"></jf-conditional>
+            <jf-conditional jf-conditional="#nohalf" jf-start="conditional-1-5-2-5-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-4"></jf-conditional>
+            <jf-conditional jf-conditional="#al_yisrael1" jf-start="conditional-1-5-2-7-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-6"></jf-conditional>
+            <tei-p jf-start="p-1-5-2-1-7" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="al_yisrael" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.44" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">עַל יִשְׂרָאֵל וְעַל רַבָּנָן וְעַל תַּלְמִידֵיהוֹן וְעַל כָּל תַּלְמִידֵי תַלְמִידֵיהוֹן. וְעַל כָּל מָאן דְּעָסְקִין בְּאוֹרַיְתָא. דִּי בְאַתְרָא</jf-textnode>
+        <tei-choice jf-id="choice-5705-1.5.1.45" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">
+            <j-option xmlns-j="http-//jewishliturgy.org/ns/jlptei/1.0" jf-conditional="#kadisha1" jf-id="opt_kadisha">
+                <tei-w jf-id="seg78w4_w2aab3b1d155b5">קַדִישָא</tei-w>
+            </j-option>
+        </tei-choice>
+        <jf-textnode jf-id="node-5705-1.5.1.46" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">הָדֵין וְדִי בְּכָל אֲתַר וַאֲתַר. יְהֵא לְהוֹן וּלְכוֹן שְׁלָמָא רַבָּא חִנָּא וְחִסְדָּא וְרַחֲמֵי וְחַיֵּי אֲרִיכֵי וּמְזוֹנֵי רְוִיחֵי וּפוְּרְקָנָא מִן קֳדָם אֲבוּהוּן דְבִשְׁמַיָּא</jf-textnode>
+            <jf-conditional jf-conditional="#vara1" jf-start="conditional-1-5-2-12-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-12"></jf-conditional>
+            <tei-anchor jf-id="seg90_w2aab3b1d179" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.48" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">וְאַרְעָא</jf-textnode>
+            <tei-anchor jf-id="seg90_w2aab3b1d179_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-12-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-12"></jf-conditional>
+        <jf-textnode jf-id="node-5705-1.5.1.50" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">וְאִמְרוּ אָמֵן</jf-textnode>
+            <tei-anchor jf-id="vara_amen" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-7" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <jf-conditional jf-end="conditional-1-5-2-7-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-6"></jf-conditional>
+            <tei-p jf-start="p-1-5-2-1-8" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="yehi_shlama" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.53" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">יְהֵא שְׁלָמָה רַבָּא מִן שְׁמַיָּא, וְחַיִּים טוֹבִים</jf-textnode>
+            <tei-anchor jf-id="seg98_w2aab3b1d195_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-conditional="#vsava1" jf-start="conditional-1-5-2-11-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-10"></jf-conditional>
+            <tei-anchor jf-id="vsava" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.57" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">וְשָֹבָע וִישׁוּעָה וְנֶחָמָה וְשֵׁיזָבָה וּרְפוּאָה וּגְאֻלָּה וּסְלִיחָה וְכַפָּרָה, וְרֵוַח וְהַצָּלָה לָנוּ וּלְכָלעַמּוֹ</jf-textnode>
+            <tei-anchor jf-id="ulkhol_amo" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <jf-conditional jf-end="conditional-1-5-2-11-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-10"></jf-conditional>
+            <tei-anchor jf-id="aleinu" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.60" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">עׇלֵינוּ וְעַל כׇּל יִשְֹרָאֵל וְאִמְרוּ אָמֵן.</jf-textnode>
+            <tei-anchor jf-id="yisrael_amen" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-8" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-p jf-start="p-1-5-2-1-9" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <tei-anchor jf-id="oseh_shalom" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+        <jf-textnode jf-id="node-5705-1.5.1.63" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream">עוֹשֶֹה שָׁלוֹם בִּמְרוֹמָיו, הוּא בְּרַחֲמָיו יַעֲשֶֹה שָׁלוֹם עָלֵינוּ, וְעַל כָּל עַמּוֹ יִשְֹרָאֵל וְאִמְרוּ אָמֵן.</jf-textnode>
+            <tei-anchor jf-id="oseh_shalom_end" jf-stream="/data/original/%D7%A7%D7%93%D7%99%D7%A9#stream"></tei-anchor>
+            <tei-p jf-end="p-1-5-2-1-9" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"></tei-p>
+            <jf-conditional jf-end="conditional-1-5-2-5-3" jf-layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-4"></jf-conditional>
+        </jf-merged>
+    </div>
+    <div id="concurrent" style="display: none;">
+        <jf:concurrent xmlns:jf="http://jewishliturgy.org/ns/jlptei/flat/1.0">
+            <jf:layer type="p" jf:id="layer_p" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#layer_p"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-1" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-1"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-2" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-2"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-3" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-3"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-4" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-4"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-5" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-5"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-6" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-6"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-7" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-7"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-8" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-8"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-9" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-9"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-10" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-10"/>
+            <jf:layer type="phony-conditional" jf:id="phony-conditional-12" jf:layer-id="/data/original/%D7%A7%D7%93%D7%99%D7%A9#phony-conditional-12"/>
+        </jf:concurrent>
+    </div>
     <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

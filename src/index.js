@@ -8,13 +8,39 @@ import {exampleSetup} from "prosemirror-example-setup"
 // Mix the nodes from prosemirror-schema-list into the basic schema to
 // create a schema with list support.
 const mySchema = new Schema({
-    nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
-    marks: schema.spec.marks
+    nodes: {
+        text: {},
+        textnode: {
+            content: "text*",
+            parseDOM: [{tag: "jf-textnode"}],
+            toDOM() { return ["jf-textnode", 0]}},
+        p: {
+            content: "",
+            parseDOM: [{tag: "tei-p"}],
+            toDOM() { return ["tei-p", "¶"]}
+        },
+        anchor: {
+            content: "",
+            parseDOM: [{tag: "tei-anchor"}],
+            toDOM() { return ["tei-anchor", "[A]"]}
+        },
+        conditional: {
+            content: "",
+            parseDOM: [{tag: "jf-conditional"}],
+            toDOM() { return ["jf-conditional", "[C]"]}
+        },
+        merged : {
+            content: "(textnode | p | anchor | conditional)*",
+            parseDOM: [{tag: "jf-merged"}],
+            toDOM() { return ["jf-merged", 0]}
+        },
+        doc: { content: "merged" }
+    }
 })
 
 window.view = new EditorView(document.querySelector("#editor"), {
     state: EditorState.create({
-        doc: DOMParser.fromSchema(mySchema).parse(document.querySelector("#content")),
+        doc: DOMParser.fromSchema(mySchema).parse(document.querySelector("#stream")),
         plugins: exampleSetup({schema: mySchema})
     })
 })
